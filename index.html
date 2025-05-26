@@ -51,20 +51,24 @@
 </head>
 <body>
 
- 
+  <!-- Removed the button -->
 
   <div id="popup" class="popup-overlay">
     <div class="popup-content">
       <button class="close-btn" onclick="closePopup()">X</button>
       <h3>Hello!</h3>
-      <p> you are hacked.</p>
+      <p>This is a dynamic pop-up message.</p>
     </div>
   </div>
 
   <script>
     function openPopup() {
-      document.getElementById("popup").classList.add("show");
-      document.getElementById("popup").style.display = "block";
+      const popup = document.getElementById("popup");
+      popup.style.display = "block";
+      // Allow time for display to apply before animating
+      setTimeout(() => {
+        popup.classList.add("show");
+      }, 10);
     }
 
     function closePopup() {
@@ -74,6 +78,11 @@
         popup.style.display = "none";
       }, 400); // match transition duration
     }
+
+    // Open pop-up on page load
+    window.onload = function() {
+      openPopup();
+    };
   </script>
 
 </body>
