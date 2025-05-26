@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Pop-up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* The pop-up background overlay */
+    .popup-overlay {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+
+    /* The actual pop-up box */
+    .popup-content {
+      position: absolute;
+      bottom: -300px; /* Start hidden */
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 20px;
+      width: 300px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: bottom 0.4s ease-in-out;
+    }
+
+    .popup-overlay.show .popup-content {
+      bottom: 100px; /* Slide in */
+    }
+
+    .close-btn {
+      background: #ff5f57;
+      border: none;
+      padding: 5px 10px;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      float: right;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="openPopup()">Show Pop-up</button>
+
+  <div id="popup" class="popup-overlay">
+    <div class="popup-content">
+      <button class="close-btn" onclick="closePopup()">X</button>
+      <h3>Hello!</h3>
+      <p>This is a dynamic pop-up message.</p>
+    </div>
+  </div>
+
+  <script>
+    function openPopup() {
+      document.getElementById("popup").classList.add("show");
+      document.getElementById("popup").style.display = "block";
+    }
+
+    function closePopup() {
+      const popup = document.getElementById("popup");
+      popup.classList.remove("show");
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 400); // match transition duration
+    }
+  </script>
+
+</body>
+</html>
